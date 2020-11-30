@@ -93,8 +93,8 @@ sentry__procmaps_parse_module_line(
     // https://github.com/google/breakpad/blob/13c1568702e8804bc3ebcfbb435a2786a3e335cf/src/processor/proc_maps_linux.cc#L66
     if (sscanf(line,
             "%" SCNx64 "-%" SCNx64 " %4c %" SCNx64 " %hhx:%hhx %" SCNu64 " %n",
-            &module->start, &module->end, &module->permissions, &module->offset,
-            &major_device, &minor_device, &inode, &consumed)
+            &module->start, &module->end, &module->permissions[0],
+            &module->offset, &major_device, &minor_device, &inode, &consumed)
         < 7) {
         return 0;
     }
