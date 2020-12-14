@@ -197,6 +197,9 @@ typedef pthread_t sentry_threadid_t;
 typedef pthread_mutex_t sentry_mutex_t;
 typedef pthread_cond_t sentry_cond_t;
 #    ifdef SENTRY_PLATFORM_LINUX
+#        ifndef PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP
+#            define PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP {{{PTHREAD_MUTEX_RECURSIVE}}}
+#        endif
 #        define SENTRY__MUTEX_INIT PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP
 #    else
 #        define SENTRY__MUTEX_INIT PTHREAD_RECURSIVE_MUTEX_INITIALIZER
